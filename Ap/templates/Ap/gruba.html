@@ -1,0 +1,378 @@
+
+
+  
+      	
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+	<style>
+		.background-image {
+			min-height: calc(100vh - 56px);
+			background-image: url("{%  static 'n.jpg' %}");
+			background-attachment: fixed;
+			background-repeat: no-repeat;
+			background-size: cover;
+			z-index: 100;
+		}
+    h5{
+      box-sizing: content-box;
+			color: rgb(17, 17, 17);
+			text-transform: inherit;
+			shape-outside: none;
+			font-weight: lighter;
+		
+			font-family:'Times New Roman', Times, serif;
+    }
+		nav {
+    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(100px);
+    background-color: rgba(26, 23, 23, 0.5) ;  
+  }
+
+  img {
+  border-radius: 100%;
+
+  opacity: 0.7
+  
+
+}
+.card{
+  -webkit-backdrop-filter: blur(9px);
+    backdrop-filter: blur(9px);
+    background-color: rgba(255, 255, 255, 0.439); 
+    border-radius: 80;
+    margin-top: auto;
+    margin-left: 30;
+}
+
+  card-body{
+   
+  
+    box-sizing:content-box;
+    tab-size: 50;
+    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.5); 
+  }
+  .container{
+          
+           box-sizing: 8;
+           table-layout: fixed;
+           -webkit-backdrop-filter: blur(9px);
+    backdrop-filter: blur(12px);
+    background-color: rgb(174, 174, 174); 
+          
+  }
+  .card-text{
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(50px);
+    background-color: rgba(193, 196, 192, 0.519);
+    color:rgb(0, 0, 0);
+    
+    font-family:'Times New Roman', Times, serif;
+  
+    opacity: 0.8;
+    
+    border-radius: 2%;
+    
+  
+          
+  }
+
+.card-title{
+   
+    color:rgb(17, 15, 15);
+    
+    font-family:Arial, Helvetica, sans-serif;
+    
+    font-size:200%;
+    font-stretch: extra-condensed;
+     
+   
+
+}
+
+
+footer {
+    height: 100px;
+    clear: both;
+    text-align: center;
+    padding: 30px 10px 0px 10px;
+    background: url("{%  static 'gray.jpg' %}") repeat left top;
+    background-attachment: fixed;
+			background-repeat: no-repeat;
+			background-size: cover;
+			z-index: 100;
+            opacity: 0.7
+}
+footer p{
+    text-align: center;
+    margin: 0px;
+}
+
+	</style>
+
+</head>
+
+<body>
+	
+       
+
+  <div class="background-image">
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent  ">
+      <div class="container-fluid">
+        <a class="navbar-brand text-black" href="{% url 'index' %}">Strona główna</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"></a>
+            </li>
+  
+            <li class="nav-item">
+              <a class="nav-link text-black" href="{% url 'galeria' %}">Galeria</a>
+            </li>
+  
+  
+  
+            <li class="nav-item dropdown  me-auto">
+              <a class="nav-link dropdown-toggle text-black" href="#" id="navbarDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Zwierzyna
+              </a>
+              <ul class="dropdown-menu bg-transparent text-black" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item text-black" href="{% url 'gruba' %}">Gruba</a></li>
+                <li><a class="dropdown-item text-black" href="{% url 'drobna' %}">Drobna</a>
+                </li>
+              </ul>
+            </li>
+            </li>
+            </li>
+  
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link text-black " href="{% url 'profil' user.email %}">Profil
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-black" href="{% url 'forum' %}">Forum</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'wylogowanie' %}" class="nav-link text-black">Wyloguj</a>
+            </li>
+  
+            {% else %}
+  
+            <li class="nav-item">
+              <a class="nav-link text-black" href="{% url 'rejestracja' %}">Rejestracja</a>
+            </li>
+            </br>
+            <li class="nav-item">
+              <a class="nav-link text-black " href="{% url 'logowanie' %}"> <i
+                  class="bi bi-box-arrow-in-right">Logowanie <svg xmlns="http://www.w3.org/2000/svg"
+                    width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right"
+                    viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z" />
+                    <path fill-rule="evenodd"
+                      d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                  </svg></i></a>
+            </li>
+  
+            {% endif %}
+  
+  
+    </nav>
+
+          <br>
+          <br>
+ <br>
+
+          <div class="background-image">
+        
+       <!--  <a href="{ url 'Logowanie' %}"></a> -->
+       
+       
+        <div class="row g-4">
+          <div class="col-md-4">
+            <img src="{%  static 'łos.jpg' %}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body ">
+              <h2 class="card-title text-center ">Łoś</h2>
+              <p class="card-text  shadow-lg w-75 p-3">
+                 Jest największym przedstawicielem  jeleniowatych. Samiec - byk, samica  natomiast to klępa albo łosza, młode - cielę. Najliczniej
+                  występuje w północno-wschodniej Polsce. Żyją samotnie lub w nielicznych grupach. W lecie żywi  się trawami, roślinami zielnymi oraz pędami i liściami drzew.
+                   Zimą żywi się pędami  drzew liściastych i iglastych oraz kora drzew. W nadmiernym zagęszczeniu powoduje dotkliwe straty w gospodarce leśnej i ogryzając drzewka sosny.
+                    Okres godowy  zwany jest bukowiskiem (bukowisko) które ropozczyna się w wrześniu, niekiedy rozpoczyna się już pod koniec sierpnia. 
+                   Z reguły jest ono niewielkie i zazwyczaj ma kształt tyk, długości do 20 cm. W trzecim roku łoś nasadza zazwyczaj poroże widłaka. Widłak jest powszechnie występującą formą poroża u łosi w młodszych klasach wieku. (Poroże łosia w typowej formie łopatacza składa się z trzech części: pni, łopat i pasnyków, natomiast poroże łosia w typowej formie badylarza składa się z rozgałęziających się pni tworzących pewną liczbę krótszych lub dłuższych odnóg.) W czwartym i piątym porożu przyszły łopatacz wyraźnie zaznacza charakter tej formy rosoch. W następnych latach poroże przybiera na masie i wymiarach, a na łopatach wzrasta liczba pasnyków. W wieku około 10 lat poroże osiąga swą szczytową wielkość, utrzymującą się przez kilka lat. Nazwę poroża o liczbie odnóg poczynając od trzech określa się w ten sposób, że podwaja się liczbę pasnyków z tej łopaty na której jest ich więcej. Mamy więc ósmaki, dziesiątaki, dwunastaki itd.
+              </p>
+             
+            </div>
+          </div>
+
+        <br>
+        <br>
+
+          <div class="col-md-4">
+            <img src="{%  static 'jel.jpg' %}" class="img-fluid rounded-start" alt="...">
+          </div>
+
+          <div class="col-md-8">
+            <div class="card-body ">
+              <h2 class="card-title text-center ">Jeleń Byk</h2>
+              <p class="card-text shadow-lg w-75 p-3">
+                  Jeleń jest zwierzęciem o harmonijnej budowie ciała.
+                   Samce noszą poroże nadające ich sylwetce  piękno. Okrywa włosowa zwana suknią jelenia ma latem czerwono - brunatno-rudawe ubarwienie o różnych odcieniach.
+                    Zimowa suknia jest płowa. Włosy sukni letniej są krótkie, zimą niemal dwukrotnie dłuższe i gęstsze. Na pośladkach występuje wydłużona plama zwana lustrem. Latem jest ona brązowo-żółta, zimą żółto-biała. Cielęta są barwy rudobrunatnej z żółtawobiałymi plamkami na bokach ciała. Na zewnętrznej stronie tylnej stopy (badyla), poniżej pięty, widoczne są pęczki dłuższych włosów pokrywających gruczoły metatarsalne. Na górnej stronie karku biegnie pasmo ciemniejszych włosów- sięgające do grzbietu.
+                    U większości jeleniowatych poroże występuje tylko u samców, wyjątek stanowi renifer, którego samice mają z reguły poroże, choć znacznie mniejsze niż u samców. Kość czołowa jeleniowatych tworzy stały kostny wyrostek zwany nasadą. Na nasadzie jeleniowatych wyrasta narostek w postaci szpica, rozgałęzionej tyki lub łopaty. Poroże jest tworem kostnym, w okresie wzrostu pokrytym skórą, o krótkim i miękkim uwłosieniu, pozbawionym włosów ościstych (scypułem). Pod scypułem przebiegają liczne naczynia krwionośne, których ślady widoczne są na skostniałym porożu w postaci rowków, oraz nerwy, dzięki którym w okresie wzrostu poroża jeleniowate reagują na bodźce dotykowe i ból.</p>
+           
+            </div>
+          </div>
+          <div class="col-md-4">
+            <img src="{%  static 'daniel.jpg' %}" class="img-fluid rounded-start" alt="...">
+          </div>
+
+          <div class="col-md-8">
+            <div class="card-body ">
+              <h2 class="card-title text-center">Daniel</h2>ś</h5>
+              <p class="card-text shadow-lg w-75 p-3">
+              Naturalny obszar występowania daniela obejmował najprawdopodobniej Azję Mniejszą. Jego przesiedlanie na nowe obszary, w basenie Morza Śródziemnego, rozpoczęli Fenicjanie a proces ten kontynuowali starożytni Rzymianie. Obecnie daniele żyją na wolności w prawie całej Europie (za wyjątkiem wschodniej części), licznych populacjach w obu Amerykach, Australii i Nowej Zelandii a także w Afryce. Daniele są również powszechnie hodowane, jako zwierzęta gospodarskie w celu produkcji mięsa, skór i poroży. Daniel jest mniejszy od jelenia szlachetnego a masa dorosłych samców może przekraczać 100 kg, samice są znacznie lżejsze. Daniele występują w trzech podstawowych odmianach barwnych: najczęściej występującej płowej, białej (leucystycznej) oraz czarnej (ciemnobrązowej). W Polsce daniele najliczniej występują w zachodniej części kraju. Liczebność tego gatunku gwałtownie rośnie w ostatnich dekadach i wykazuje on ekspansję na nowe tereny, głównie za sprawą introdukcji oraz ucieczek z hodowli fermowej. Część osobników może również pochodzić z populacji żyjących w krajach sąsiednich (Czechy, Słowacja, Niemcy). Wzrost liczebności danieli ma negatywny wpływ na rodzime jeleniowate, głównie sarnę. Daniel jest gatunkiem łownym. Daniele są łatwym łupem dla wilków oraz zdziczałych psów.  
+                Okres polowań: byki - od 1 września do końca lutego,
+                  łanie-od dnia 1 września do dnia 15 stycznia, cielęta- od dnia 1 września do końca lutego  </p>
+             
+            </div>
+          </div>
+          <div class="col-md-4">
+            <img src="{%  static 'rogacz.jpg' %}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <br>
+          <div class="col-md-8">
+            <div class="card-body text-center">
+              <h2 class="card-title text-center">Sarna</h2>
+              <p class="card-text shadow-lg w-75 p-3">Najmniejszy, a jednocześnie najbardziej rozpowszechniony gatunek zwierzyny płowej; należy do rodziny jeleniowatych; żyje w zasadzie pojedynczo lub rodzinami (matka z koźlętami), zimą łączy się w większe grupy (tzw. rudle); samce (rogacze) na ogół żyją pojedynczo, tylko zimą dołączają do rudli; występuje licznie na terenie całego kraju. Okres godowy (ruja) przypada na przełom lipca i sierpnia.
+                Sarna odznacza się znaczną wybiórczością pokarmową. W warunkach leśnych głównymi składnikami żeru są rośliny zielone, a w mniejszym stopniu liście i pędy drzew, krzewów i krzewinek. W pokarmie sarny polnej przeważają rośliny uprawne. Dzienne zapotrzebowanie sarny w okresie letnim wynosi około 3 kg żeru zielonego. Do pokrycia zapotrzebowania sarny na wodę wystarczy na ogół rosa i wilgoć zawarta w roślinach. Rzadko widuje się sarny pijące wodę bezpośrednio z wodopojów.
+                U koźlęcia płci męskiej w wieku 2-3 miesięcy na kościach czołowych czaszki zaczynają się pojawiać możdżenie. Na nich narasta tzw. poroże pierwiastkowe w postaci malutkich guzików i szpiców. Koźlę zrzuca je zimą. W wieku 10 miesięcy u kozła zaczynają wyrastać normalne parostki, rozpoczynające roczne cykle regularnej zmiany poroża. Poroże kozioł zrzuca w okresie późno jesiennym. Wkrótce po tym rozpoczyna się nowe jego wzrastanie. Parostki roczne kozła z reguły są niewielkie. W następnych latach życia wzrasta ich wielkość i masa. Dojrzałe, maksymalnie rozwinięte poroże nasadzone jest w wieku 7-8 lat. Później następuje uwstecznianie się poroża. Zasadniczo rozróżnia się trzy formy rozwojowe parostka: szpicaka, widłaka i szóstaka. Do naturalnych wrogów sarny zaliczamy: wilka, rysia, duże psy.
+                Okres polowań: <br>
+                 kozły-od dnia 11 maja do dnia 30 września, kozy i koźlęta- od dnia 1 październik do dnia 15 stycznia 
+                  </p>
+             
+            </div>
+          </div>
+          <div class="col-md-4">
+            <img src="{%  static 'dzik.jpg' %}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <br>
+          <div class="col-md-8">
+            <div class="card-body text-center">
+              <h2 class="card-title text-center">Dzik</h2>
+              <p class="card-text shadow-lg w-75 p-3 ">
+                Występuje niewzykle  licznie na terenach calej Polski, 
+                należy do rodziny świniowatych, rzędu parzystokopytnych, charakteryzuje go to że lubi kąpiele błotne.
+                Zamieszkuje zarówno lasy nizinne, jak i górskie, wyglądem przypomina świnię domową, jest jednak znacznie silniej zbudowany, posiada wysokie i mocne nogi (biegi) zakończone racicami oraz potężny łeb osadzony na krótkim sztywnym karku. 
+                Mocny łeb przechodzi w gwizd (ryj) zakończony silnie umięśnioną tabakierą (nosem) dzięki której może buchtować (ryć) nawet w najtwardszym podłożu poszukując pokarmu. Świece (oczy) są bardzo małe, uszy również nieduże; przód potężniejszy od zadu; szczecina dzika jest gruba i sztywna, zwłaszcza na grzbiecie, gdzie tworzy tzw. chyb, który zaniepokojony dzik potrafi najeżać; kły górne o przekroju okrągłym wywinięte są ku górze na zewnątrz (tzw. fajki), kły dolne (tzw. szable) o przekroju trójkątnym, wyrastają ku górze, są bardzo ostre i większe od kłów górnych; u samic szable są znacznie mniejsze, a fajki nie są wywinięte ku górze; dzik żeruje przewaznie w nocy i gromadnie; żyje w stadach tzw. watahach. 
+                  Okres polowania:  przez cały rok</p>
+             
+            </div>
+          </div>
+          <div class="col-md-4">
+            <img src="{%  static 'wilk.jpg' %}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <br>
+          <div class="col-md-8">
+            <div class="card-body text-center">
+              <h2 class="card-title text-center">Wilk</h2>
+              <p class="card-text shadow-lg w-75 p-3">Z wyglądu wilk przypomina psa owczarka alzackiego, ale ma bardziej wydłużony tułów i wyższą, lecz węższą klatkę piersiową. Kończyny przednie zakończone pięcioma palcami, zdają się być wciśnięte w klatkę piersiową z łokciami skierowanymi do wewnątrz. Głowa wyróżnia się szerokim czołem, skośnie osadzonymi oczami i krótszymi niż u psa owczarka uszami. Ogon jest puszysty, długości około jednej trzeciej tułowia. Na zewnętrznej stronie ogona, około 10 cm od nasady znajduje się gruczoł zapachowy, odznaczający się ciemniejszymi od reszty sierści włosami. Ubarwienie wilka jest z wierzchu buropłowe, od spodu jaśniejsze. Ogólnie jednak jest trudne do opisu z powodu wielkiej różnorodności. Jedne osobniki mają na grzbiecie ciemną pręgę lub siodełko, u innych plam tych brak. Spód ciała od białego, szarożółtego do różowego. Samica posiada pięć par sutek.
+               Wilk jako jedyny z dużych drapieżników zwierzyny płowej i czarnej utrzymuje równowagę biologiczną tych gatunków w przyrodzie.
+                Podstawowym pokarmem wilka są duże ssaki kopytne. Nie gardzi również padliną, drobnymi ssakami, ptactwem a nawet żabami. Zabija głównie osobniki stare, młode i chore, które stanowią łatwiejszy łup, ofiarami są również zwierzęta w sile wieku i zdrowe. Może nie jeść nic przez tydzień, a potem jednorazowo 10-15 kg. Dzienne zapotrzebowanie pokarmu obliczono na 3-5 kg.
+            </p>
+             
+            </div>
+          </div>
+          <div class="col-md-4">
+            <img src="{%  static 'ryś.jpg' %}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <br>
+          <div class="col-md-8">
+            <div class="card-body text-center">
+              <h2 class="card-title ">Ryś</h2>
+              <p class="card-text shadow-lg w-75 p-3">Ryś pod względem budowy przypomina raczej psa niż kota (długie kończyny i krótki ogon).
+                   Głowę ma typowo kocią, okrągłą z trójkątnymi, stosunkowo długimi uszami, zakończonymi charakterystycznymi czarnymi pędzelkami włosów długości 40-50 mm. Oczy są duże, o źrenicy pionowej, barwy szarozielonej. Ogon jest gruby, tępo zakończony, na końcu czarny. Kończyny przednie są pięciopalczaste, tylne czteropalczaste, zakończone ostrymi, mocno zakrzywionymi, wysuwalnymi pazurami. Sierść z wierzchu jest barwy od szarożółtej do ciemno- rudej. Spód ciała jest jaśniejszy, biały lub kremowy. U większości okazów występują na kończynach i bokach ciała cętki, plamy lub kreski czarne bądź ciemnobrązowe. Nie jest to związane ze środowiskiem, bo rysie o sierści plamistej i bez plam występują zarówno w górach, jak i na nizinach. Włos mają rysie miękki, jedwabisty i długi. W zimie u samców są wyraźnie widoczne bokobrody.
+                   Jako typowy mięsożerca żywi się ryś różnej wielkości ptakami i ssakami, nie gardzi padliną, jak również drobnymi gryzoniami, płazami, a nawet owadami. Rodzaj pokarmu i jego wybór zależą od zagęszczenia poszczególnych gatunków ofiar i ich dostępności dla rysia oraz od pory roku. Tam gdzie jest dużo zwierzyny drobnej, podstawę pożywienia rysia stanowią w okresie bezśnieżnym zające, króliki, kuraki leśne, w zimie zaś zwierzyna płowa. W Polsce z powodu niedoboru zwierzyny drobnej podstawę jego pożywienia stanowią sarny i jelenie, rzadko warchlaki. Ryś potrafi przy tym wyspecjalizować się w żywieniu poszczególnymi gatunkami zwierząt.
+                </p>
+             
+            </div>
+          </div>
+          <div class="col-md-4">
+            <img src="{%  static 'muf.jpg' %}" class="img-fluid rounded-start" alt="...">
+          </div>
+
+          <div class="col-md-8">
+            <div class="card-body ">
+              <h2 class="card-title text-center">Muflon</h2>
+              <p class="card-text shadow-lg w-75 p-3">Muflon krępym tułowiem i stosunkowo krótkimi nogami przypomina owcę domową, z którą jest blisko spokrewniony. Sierść w lecie jest rudawobrunatna, w zimie ciemniejsza- rudobrązowa. U samców (baranów) powyżej pierwszego roku życia na obu bokach występują mniej lub bardziej widoczne białawe plamy zwane siodłem. Spód ciała, wewnętrzna strona nóg, pysk i lustro są białawe. Samice (owce) mają ubarwienie bardziej jednolite i jaśniejsze niż u samców, w lecie jasnobrązowe, w zimie ciemnobrązowe. U muflonów występuje charakterystyczny silny kark, na którym wyrasta grzywa z dłuższych włosów. U barana występują rogi (ślimy), spiralnie skręcone ku tyłowi i w bok. Na rogach są bardzo dobrze widoczne karby przyrostów rocznych, po których określa się wiek. Do cech odróżniających płeć należą: wielkość, ubarwienie sukni, rogi i siodło. Muflon ma gruczoły zapachowe między palcami, w okolicach odbytu, a samice również po bokach wymienia.
+               
+                W okresie historycznym muflon zachował się na dwóch śródziemnomorskich wyspach Sardynii i Korsyce. W roku 1732 po raz pierwszy od czasów starożytności sprowadzono muflona na kontynent europejski, do zwierzyńca Belweder pod Wiedniem. Do Polski na Dolny Śląsk (Góry Sowie, Bielawa) muflon trafił w 1901 roku.
+                Wcześnie po urodzeniu u barana na łbie tworzy się kostna nasada, z której pod koniec pierwszego miesiąca życia wyrastają rogi. W okresie listopad-grudzień zanika przyrost rogów i powstaje w tym czasie tzw. przyrost roczny. Na wiosnę rogi znów intensywnie przyrastają. Między poszczególnymi przyrostami rocznymi na rogach narastają zgrubienia (karby).
+
+            </p>
+
+             
+            </div>
+          </div>
+
+        </div>
+      </div>
+   
+
+
+    
+      <script>
+
+        const showcase=document.querySelector('.showcase');
+  
+      </script>
+  
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+      </script>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+        integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+        crossorigin="anonymous"></script>
+  
+  </body>
+  
+  <br>
+  <br>
+    <footer class="footer">
+    
+       <h5>  Kontakt: 
+         <li>
+          jelen.brzozow@onet.pl
+          ul. Piastowa 22, 36-200 Brzozów podkarpackie 
+         </li>
+     
+  
+    </footer>
+  </html>
+

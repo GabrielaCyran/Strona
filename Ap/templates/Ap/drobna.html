@@ -1,0 +1,374 @@
+
+
+  
+      	
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+	<style>
+		.background-image {
+			min-height: calc(100vh - 56px);
+			background-image: url("{%  static 'n.jpg' %}");
+			background-attachment: fixed;
+			background-repeat: no-repeat;
+			background-size: cover;
+			z-index: 100;
+		}
+		nav {
+    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(100px);
+    background-color: rgba(26, 23, 23, 0.5) ;  
+  }
+
+  img {
+  border-radius: 100%;
+
+  opacity: 0.7
+  
+
+}
+.card{
+  -webkit-backdrop-filter: blur(9px);
+    backdrop-filter: blur(px);
+    background-color: rgba(255, 255, 255, 0.439); 
+    border-radius: 80;
+    margin-top: auto;
+    margin-left: 30;
+}
+.card-text{
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(50px);
+    background-color: rgba(193, 196, 192, 0.519);
+    color:rgb(0, 0, 0);
+    
+    font-family:'Times New Roman', Times, serif;
+  
+    opacity: 0.8;
+    
+    border-radius: 2%;
+    
+  
+          
+  }
+
+.card-title{
+   
+    color:rgb(17, 15, 15);
+    
+    font-family:Arial, Helvetica, sans-serif;
+    
+    font-size:200%;
+    font-stretch: extra-condensed;
+     
+   
+
+}
+  card-body{
+   
+  
+    box-sizing:content-box;
+    tab-size: 50;
+    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(7px);
+    background-color: rgba(255, 255, 255, 0.5); 
+  }
+  .container{
+          
+           box-sizing: 8;
+           table-layout: fixed;
+           -webkit-backdrop-filter: blur(9px);
+    backdrop-filter: blur(9px);
+    background-color: rgb(174, 174, 174); 
+          
+  }
+
+ 
+
+footer {
+    height: 100px;
+    clear: both;
+    text-align: center;
+    padding: 30px 10px 0px 10px;
+    background: url("{%  static 'gray.jpg' %}") repeat left top;
+    background-attachment: fixed;
+			background-repeat: no-repeat;
+			background-size: cover;
+			z-index: 100;
+            opacity: 0.7
+}
+footer p{
+    text-align: center;
+    margin: 0px;
+}
+h5{
+      box-sizing: content-box;
+			color: rgb(17, 17, 17);
+			text-transform: inherit;
+			shape-outside: none;
+			font-weight: lighter;
+		
+			font-family:'Times New Roman', Times, serif;
+    }
+	</style>
+
+</head>
+
+<body>
+	
+        
+       
+
+   
+    
+  
+ 
+  
+       
+
+
+        
+
+  <div class="background-image">
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent  ">
+      <div class="container-fluid">
+        <a class="navbar-brand text-black" href="{% url 'index' %}">Strona główna</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"></a>
+            </li>
+  
+            <li class="nav-item">
+              <a class="nav-link text-black" href="{% url 'galeria' %}">Galeria</a>
+            </li>
+  
+  
+  
+            <li class="nav-item dropdown  me-auto">
+              <a class="nav-link dropdown-toggle text-black" href="#" id="navbarDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Zwierzyna
+              </a>
+              <ul class="dropdown-menu bg-transparent text-black" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item text-black" href="{% url 'gruba' %}">Gruba</a></li>
+                <li><a class="dropdown-item text-black" href="{% url 'drobna' %}">Drobna</a>
+                </li>
+              </ul>
+            </li>
+            </li>
+            </li>
+  
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link text-black " href="{% url 'profil' user.email %}">Profil
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-black" href="{% url 'forum' %}">Forum</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'wylogowanie' %}" class="nav-link text-black">Wyloguj</a>
+            </li>
+  
+            {% else %}
+  
+            <li class="nav-item">
+              <a class="nav-link text-black" href="{% url 'rejestracja' %}">Rejestracja</a>
+            </li>
+            </br>
+            <li class="nav-item">
+              <a class="nav-link text-black " href="{% url 'logowanie' %}"> <i
+                  class="bi bi-box-arrow-in-right">Logowanie <svg xmlns="http://www.w3.org/2000/svg"
+                    width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right"
+                    viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z" />
+                    <path fill-rule="evenodd"
+                      d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                  </svg></i></a>
+            </li>
+  
+            {% endif %}
+  
+  
+    </nav>
+        
+        
+
+
+     
+      
+<br>
+          <br>
+          <br>
+ <br>
+
+          <div class="background-image">
+        
+       <!--  <a href="{ url 'Logowanie' %}"></a> -->
+       
+       
+        <div class="row g-4">
+          <div class="col-md-4">
+            <img src="{%  static 'piżmak.jpg' %}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body ">
+              <h2 class="card-title text-center">Piżmak</h2>
+              <p class="card-text shadow-lg w-75 p-3">
+                Piżmak jest gryzoniem wielkości szczura, o krępym, niezgrabnym tułowiu, dość dużej głowie osadzonej na bardzo krótkiej szyi. Czaszka jest szeroka i płaska, o wydatnych łukach jarzmowych. Uszy są małe, prawie ukryte w sierści, zaokrąglone, porośnięte krótkim, gęstym włosem. Fałd skórny zamyka otwór słuchowy podczas nurkowania. Ucho usytuowane jest prawie na poziomie oka i nozdrzy, dość blisko oka. Oczy są małe, czarne, wysoko osadzone. Pysk tępy z kilkoma rzędami włosów czuciowych (wibrysów) na wargach. Rozdwojona górna warga umożliwia zamykanie otworu gębowego fałdami skórnymi w czasie pracy piżmaka pod wodą. Otwory nosowe, bocznie położone; również są zamykane w czasie nurkowania otaczającymi je chrząstkami. Kończyny przednie są krótkie, porośnięte futrem aż po nadgarstek, poniżej którego pokryte są krótkim włosem. Kończyny tylne są dwukrotnie większe od przednich. Boki długich palców i brzegi stóp porośnięte są szczecinkami, skutecznie zwiększającymi powierzchnię kończyny podczas pływania. Palce zakończone są długimi, od spodu wklęsłymi pazurkami, barwy od jasnożółtej do ciemnobrunatnej. Ogon jest długi, bocznie spłaszczony, mniej więcej w połowie sierpowato wygięty ku dołowi, pokryty rogowymi łuskami, z pomiędzy których wyrastają włosy czuciowe. Ułatwia on piżmakowi pływanie. Futro piżmaka jest gęste, lśniące, u poszczególnych osobników może mieć różne odcienie barwy brunatnej. Zwykle na grzbiecie jest ciemne, przechodzi w jaśniejsze na bokach i szarobrązowe na podbrzuszu
+                Piżmak może wyrządzać znaczne szkody niszcząc groble i umocnienia brzegów zbiorników wodnych. Przy nadmiernym występowaniu może też czynić szkody w uprawach polowych i warzywniczych.
+
+            </p>
+             
+            </div>
+          </div>
+
+        <br>
+        <br>
+
+          <div class="col-md-4">
+            <img src="{%  static 'lis.jpg' %}" class="img-fluid rounded-start" alt="...">
+          </div>
+
+          <div class="col-md-8">
+            <div class="card-body ">
+              <h2 class="card-title text-center">Lis</h2>
+              <p class="card-text  shadow-lg w-75 p-3">Lis jest najpospolitszym drapieżnikiem w naszym kraju. Tułów ma wydłużony, głowę o ostro zakończonym pysku i długich trójkątnych uszach. Kończyny ma krótkie, przednie 5-, tylne6-palcowe, opuszki stóp owłosione. Ogon (kita) jest długi i puszysty. Koniec ogona jest biały, na górnej jego stronie, 5-6 cm od nasady, znajduje się gruczoł zapachowy. Wierzch ciała jest rudawy, spód biały, uszy i dolna część kończyn czarne Zmienność ubarwienia jest bardzo duża stąd rozliczne nazwy, jak węglarz, krzyżak itp.
+                Lis jest zwierzęciem wszystkożernym z przewagą. pokarmu mięsnego. Rodzaj pokarmu ..jest dostosowany do dynamiki populacji ofiar i waha się w zależności od biotopu i typu krajobrazu. Podstawowym pokarmem lisa są gryzonie myszowate, ale żywi się również. owadami, ślimakami, robakami, okazyjnie zającami lub królikami, ptakami ich zniesieniem, padliną, jagodami i innymi owocami. W pobliżu osad ludzkich odwiedza regularnie śmietniki i wysypiska. W okresie obfitości pokarmowej zbiera zapasy, które zagrzebuje w ziemi. Dzienne zapotrzebowanie pokarmowe wynosi 0,5-1 kg.
+                Lisy są nosicielami wścieklizny. Stosowane na zachodzie w walce z tą chorobą gazowanie nor jest i uciążliwe i mało skuteczne, a co gorsza jest również zatruwaniem środowiska. Redukcja powinna być więc przeprowadzona przez odstrzał młodych lisów przy norze. Podstawę pokarmu lisa stanowią gryzonie wyrządzające poważne szkody w gospodarce rolnej i leśnej. Sprzyja on przeto utrzymaniu równowagi biologicznej w ekosystemach. 
+              </p>
+            
+            </div>
+          </div>
+          <div class="col-md-4">
+            <img src="{%  static 'zajac.jpg' %}" class="img-fluid rounded-start" alt="...">
+          </div>
+
+          <div class="col-md-8">
+            <div class="card-body ">
+              <h2 class="card-title text-center">Zając</h2>
+
+              <p class="card-text shadow-lg w-75 p-3">Tułów zająca jest wydłużony, klatka piersiowa wysoka, lecz bardzo wąska, a kręgosłup giętki. Silne tylne nogi (skoki) są mocno rozwinięte, dwukrotnie dłuższe od przednich. Przednie skoki mają po pięć palców, tylne po cztery palce, wyposażone w mocne pazury. Dolna strona stóp obrośnięta jest gęstymi włosami; tworzącymi rodzaj szczotki. Wielkie stojące uszy (słuchy) zająca są bardzo ruchliwe, a zwierzę może poruszać nimi we wszystkich kierunkach. Słuchy są ważną cechą rozpoznawczą wszystkich trzech gatunków zającowatych występujących w naszym kraju. U szaraka słuchy są dłuższe niż głowa, z czarnymi szczytami. Słuchy bielaka również mają czarne szczyty, lecz przyłożone do głowy sięgają jedynie końca pyska. U królika słuchy są krótsze niż głowa, bez czarnych szczytów. Oczy (trzeszcze) są duże, okrągłe barwy brązowej, bocznie osadzone w głowie. Charakterystyczna dla zająca jest głęboko w poprzek dzielona górna warga. Na końcu pyszczka występują długie włosy czuciowe. Sierść (turzyca) zająca składa się z gęstego i wełnistego podszycia oraz dłuższych, mocniejszych włosów pokrywowych. Na spodniej części ciała włosy są koloru białego, na bokach ciała - białe z rudawymi końcami, na stronie grzbietowej ciała są szare z żółtordzawym zakończeniem i ciemnobrunatną podstawą. Gdzieniegdzie spotkać można także włosy czarne. Na tylnej części grzbietu i na udach występuje lekki srebrzysty nalot. Mieszanina tych odcieni barw daje wierzchniej części kożucha zająca kolor ziemisty
+                Zając odżywia się wyłącznie pokarmem roślinnym. W skład jego jadłospisu wchodzi większość roślin uprawnych w różnej postaci, trawy i rozmaite zioła, pączki, młode pędy, a także kora grubszych gałęzi i pni drzew oraz krzewów, ponadto niektóre owoce, nasiona oraz grzyby. Pełna dzienna dawka żywieniowa zająca wynosi 800-1000 g świeżej masy Zając w zasadzie nie pije wody. Wystarcza mu woda zawarta w pokarmie oraz kropelki rosy lub deszczu na roślinach. Znane są jednak sporadyczne wypadki picia przez zające wody z rowów, kałuż itp.
+                Szkody wyrządzane przez zające, a mogące mieć znaczenie gospodarcze, powstają głównie w sadach i szkółkach zadrzewionych, których młode drzewka są narażone zimą na ogryzanie kory. Szkody w uprawach polnych, w porównaniu ze szkodami wyrządzanymi przez niektóre inne gatunki zwierząt łownych, są stosunkowo niewielkie. Przy dużej obfitości roślin żerowych i rozproszeniu zajęcy szkody te są nawet trudno zauważalne. Na terenach leśnych szkody wyrządzane przez zające polegają przede wszystkim na zgryzaniu pędów młodych drzewek na uprawach. W łowiskach leśnych zajęcy jednak zwykle jest niewiele, stąd i ewentualny rozmiar szkód jest nieznaczny.
+            </p>
+             
+            </div>
+          </div>
+          <div class="col-md-4">
+            <img src="{%  static 'jenot.jpg' %}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <br>
+          <div class="col-md-8">
+            <div class="card-body text-center">
+              <h2 class="card-title text-center">Jenot</h2>
+              <p class="card-text shadow-lg w-75 p-3">Jenot jest zwierzęciem nieco mniejszym od lisa. Tułów ma długi, krępy, nogi długie, głowę małą z krótkim, spiczastym pyskiem. Zaokrąglone uszy ledwo wystają z długich włosów głowy. Zęby charakterystyczne dla drapieżnika- wszystkożercy. W porównaniu z uzębieniem lisa kły są słabiej rozwinięte, powierzchnia cierna zębów trzonowych szersza.
+                Odżywia się głównie pokarmem pochodzenia zwierzęcego, choć pobiera także, zwłaszcza jesienią, znaczne ilości pokarmu roślinnego.
+                Jenot jest u nas obcym elementem przyrodniczym. Chociaż w ciągu roku odżywia się przeważnie drobnymi gryzoniami i bezkręgowcami, jednak wiosną i latem może specjalizować się w pustoszeniu naziemnych i nadwodnych gniazd i lęgów ptasich, redukując pogłowie kaczek i kuraków leśnych. Na przedwiośniu może być groźny dla osłabionych saren Jest konkurentem znacznie cenniejszych rodzimych gatunków - lisa i borsuka oraz roznosicielem groźnych chorób i pasożytów (wścieklizna, świerzb). Z racji trybu życia i wszystkożerności jest bardzo trudny do zredukowania i wytępienia.
+
+              </p>
+             
+            </div>
+          </div>
+          <div class="col-md-4">
+            <img src="{%  static 'borsuk.jpg' %}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <br>
+          <div class="col-md-8">
+            <div class="card-body text-center">
+              <h2 class="card-title text-center">Borsuk</h2>
+              <p class="card-text shadow-lg w-75 p-3"> Tułów ma krępy, silny, zad masywny, głowa przechodzi w szyję bez zwężenia. Oczy są małe, uszy krótkie, zaokrąglone, biało obrzeżone, nos czarny, lekko zadarty. Ogon ma krótki. Na spodniej jego części, naprzeciw odbytu, występuje fałda skórna średnicy 4-5 cm, głębokości 2,5-3 cm, w której znajduje się narząd zapachowy. Ponadto posiada on po obu bokach odbytu charakterystyczne dla rodziny łasicowatych gruczoły zapachowe. Barwa sierści z wierzchu i na bokach ciała jest srebrzystoszara, spód ciała i kończyny czarne. Pysk i czoło są białe, przez oczy po obu bokach głowy przebiegają czarne pręgi. 
+                Borsuk jest wszystkożerny, a w jego diecie duży udział ma pokarm roślinny: kłącza, bulwy, jagody, orzechy i inne owoce, zboża, lubi zwłaszcza owies w fazie mleczka i kukurydzę. Zjada drobne gryzonie, krety, jeże, płazy, ślimaki, dżdżownice, owady, z których najbardziej lubi osy i trzmiele. Wykopuje je w nocy, zostawiając charakterystyczne lejki, podobne do tych, jakie zostają po buchtowaniu małych warchlaków. Nie gardzi też padliną.
+                Główny okres cieczki borsuka to lipiec-sierpień, ale możliwe są ruje wcześniejsze i późniejsze. Ciąża trwa od 7 do 12 miesięcy (tzw. ciąża przedłużona) na skutek opóźnienia implantacji. Młode rodzą się między styczniem a kwietniem (jeden miot rocznie). Liczba młodych w miocie wynosi 1-5 (zwykle 3). Otwarcie oczu następuje po 28-35 dniach. Noworodki są całkiem białe i mają małżowiny uszne zarośnięte. Okres laktacji trwa około 4 miesiące, ale już po 75 dniach życia młode borsuki pobierają pokarm stały. Samodzielność uzyskują po 6 miesiącach życia, ale więzy rodzinne utrzymywane są do następnej wiosny. Dojrzałość płciową uzyskują samce po dwóch latach życia, samice w wieku 12-15 miesięcy. Kopulacja trwa albo krótko (2 minuty), albo długo (15 minut). Odbywa się na powierzchni ziemi przed norą, często w obecności młodych. Borsuk linieje raz w roku mniej więcej w połowie kwietnia. W jesieni natomiast wyrasta mu sierść zimowa, zwykle przed końcem października ma już nowy kożuch na zimę. Długość życia borsuka na swobodzie wynosi 12-15 lat.
+Wrogami naturalnymi są wilk, ryś i włóczące się psy.
+
+              </p>
+             
+            </div>
+          </div>
+          <div class="col-md-4">
+            <img src="{%  static 'kuna.jpg' %}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <br>
+          <div class="col-md-8">
+            <div class="card-body text-center">
+              <h2 class="card-title text-center">Kuna</h2>
+              <p class="card-text shadow-lg w-75 p-3">Kuna leśna jest wielkości kota domowego, ale ma tułów silnie wydłużony, głowę wąską o wyciągniętym pysku, oczy stosunkowo duże. Nos ma czarny lub ciemny. Uszy są małe, prawie trójkątne, o końcach zaokrąglonych, obramowane jaśniejszym paskiem. Sierść długa, miękka, jedwabista, barwy od jasno do ciemnobrązowej, kasztanowej. Na gardle znajduje się plama zmiennego kształtu, barwy od żółtej do pomarańczowej. Nie dochodzi ona nigdy do przednich łap. Ogon jest puszysty, długością równy mniej więcej połowie długości ciała. Grzbiet, kończyny i ogon są nieco ciemniejsze od reszty ciała.
+                Pokarmem kuny leśnej są głównie gryzonie myszowate, poza tym wiewiórki, ptaki i ich zniesienia, owady, płazy, ryby i padlina. W jesieni, udział roślin (owoce i jagody) może stanowić 100% diety. Dzienne zapotrzebowanie pokarmowe wynosi około 10% masy ciała, czyli 160 g. W okresie nadmiaru pokarmu kuna leśna robi zapasy, np. jajek ptasich, które zagrzebuje, by je potem spożyć.
+                Tumak osiąga dojrzałość płciową w wieku około 15 miesięcy. Cieczka rozpoczyna się z końcem czerwca i trwa do 1 sierpnia. Kopulacja trwa średnio 50 minut (10-150) zaobserwowano .5-7 kryć. Ciąża jest przedłużona i trwa od 260 do 305 dni. Młode rodzą się w marcu-kwietniu. Kuna ma jeden miot w ciągu roku, z 3-5 młodymi. Oczy otwierają się im po 34-38 dniach. Pierwsze opuszczenie gniazda następuje po około 44 dniach. Okres laktacji trwa około 2,5 miesiąca. Rozpad rodziny następuje pod koniec lata lub na początku jesieni, ale młode osiągają samodzielność dopiero po 6 miesiącach życia. Co do linki tumaka zdania są podzielone: jedni autorzy wymieniają dwie linki w roku, na wiosnę i w jesieni , inni uważają, że całkowita linka przebiega tylko raz w roku, na wiosnę- zaczyna się od łap, a kończy się na grzbiecie. Włos zimowy wyrasta we wrześniu i w połowie października tumak już ma futro zimowe. Maksymalna długość życia tumaka w przyrodzie wynosi 10-12 lat. Wrogami naturalnymi tumaka są większe od nich drapieżniki i włóczące się psy oraz orzeł, puchacz i jastrząb gołębiarz
+
+
+              </p>
+             
+            </div>
+          </div>
+          <div class="col-md-4">
+            <img src="{%  static 'bażant.jpg' %}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <br>
+          <div class="col-md-8">
+            <div class="card-body text-center">
+              <h2 class="card-title ">Bażant</h2>
+              <p class="card-text shadow-lg w-75 p-3">Ptak z rodziny Phasianidae (kurowate), rzędu Galliformes (grzebiące). Długość ciała samca 70-90 cm (w tym ogon 35-45 cm), samicy 55-70 cm (ogon 20-25 cm), masa ciała 800-1500 g. Wyraźny dymorfizm płciowy. Samiec ma zielono połyskującą głowę, białą obrożę na szyi i rdzawy tułów w łuskowany wzór. Wiosną nabrzmiałe czerwone korale i róże po bokach głowy. Samica jest jasnobrązowa w ciemne plamy ze znacznie krótszym ogonem. Gatunek pochodzący ze wschodnie Azji, sprowadzany do Europy już w czasach rzymskich. W naszej awifaunie jest elementem obcym wprowadzonym w XVI wieku. Populacja jego jest ciągle podtrzymywana przez ptaki wsiedlane w celach łowieckich. Zamieszkuje uprawy, łąki i ugory kępami krzewów. Gniazdo zakłada na ziemi. W okresie V-VI składa 8-15 jaj, które wysiaduje wyłącznie samica przez 23-28 dni. Zagniazdownik, pisklęta wykluwają się pokryte puchem i są od razu gotowe do opuszczenia gniazda. Wyprowadza jeden lęg w roku. Gatunek osiadły. Pożywienie: nasiona owoce, korzonki, wiosną także owady. Liczebność w Polsce szacowana na 150-200 tysięcy par. Gatunek łowny. Okres polowań na koguty od 1 października do końca lutego, na kury - wyłącznie na terenach ośrodków hodowli zwierzyny, gdzie prowadzi się wolierową hodowlę bażanta - od 1 października do dnia 31 stycznia.
+
+              </p>
+             
+            </div>
+          </div>
+         
+
+        </div>
+      </div>
+   
+      <script>
+
+        const showcase=document.querySelector('.showcase');
+  
+      </script>
+  
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+      </script>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+        integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+        crossorigin="anonymous"></script>
+  
+  </body>
+  
+  <br>
+  <br>
+    <footer class="footer">
+    
+       <h5>  Kontakt: 
+         <li>
+          jelen.brzozow@onet.pl
+          ul. Piastowa 22, 36-200 Brzozów podkarpackie 
+         </li>
+     
+  
+    </footer>
+  </html>
+
+
